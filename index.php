@@ -1,4 +1,5 @@
 <?php
+include_once 'app/database/dbfunctions.php';
 
 require_once 'app/views/templates/head.php';
 ?>
