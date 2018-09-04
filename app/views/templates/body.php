@@ -2,6 +2,6 @@
 
 $dbfunctions = new dbfunctions();
 
-var_dump($dbfunctions->selectUserById(2));
+//var_dump($dbfunctions->selectUserById(2));
 
 ?>

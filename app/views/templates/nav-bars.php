@@ -90,16 +90,20 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="nav navbar-nav ml-auto">
+                        <?php if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === false) { ?>
                         <li class="nav-item">
                             <a class="nav-link" href="#">
                                 <i class="fas fa-sign-in-alt"></i>
                                 Log In</a>
                         </li>
+                        <?php } ?>
+                        <?php if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) { ?>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="/RoutineNotes/public/auth/login.php">
                                 <i class="fas fa-sign-out-alt"></i>
                                 Log Out</a>
                         </li>
+                        <?php } ?>
                         <li class="nav-item">
                             <a class="nav-link" href="#">
                                 <i class="fas fa-user-alt"></i>

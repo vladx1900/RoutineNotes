@@ -30,4 +30,36 @@ class dbfunctions {
 
         return $result->fetch_assoc();
     }
+
+    /**
+     * @param $name
+     * @param $password
+     * @return array
+     */
+    public function selectUserByCredentials($name, $password)
+    {
+        $password = md5($password);
+        $sql = $this->conn->prepare('SELECT * FROM `users` WHERE name = ? AND password = ?');
+        $sql->bind_param('ss', $name, $password);
+
+        $sql->execute();
+
+        $result = $sql->get_result();
+
+        return $result->fetch_assoc();
+    }
+
+    /**
+     * @param $name
+     * @param $password
+     * @return bool
+     */
+    public function insertNewUser($name, $password)
+    {
+        $password = md5($password);
+        $sql = $this->conn->prepare('INSERT INTO `users` (`name`, `password`, `role`) VALUES (?, ?, 1)');
+        $sql->bind_param('ss', $name, $password);
+
+        return $sql->execute();
+    }
 }
