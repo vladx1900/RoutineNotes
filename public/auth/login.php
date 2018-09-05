@@ -29,6 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         if ($result !== null) {
             $_SESSION["loggedin"] = true;
+            $_SESSION["user_email"] = $username;
             header("location: ../../index.php");
             exit;
         } else {

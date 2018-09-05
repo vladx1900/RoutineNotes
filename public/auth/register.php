@@ -35,6 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         if (empty($error) && $result) {
             $_SESSION["loggedin"] = true;
+            $_SESSION["user_email"] = $username;
             header("location: ../../index.php");
         } else if (empty($error))  {
             $error = 'Could not create the user';

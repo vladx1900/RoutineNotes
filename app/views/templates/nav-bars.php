@@ -12,7 +12,7 @@
 
         <ul class="list-unstyled components">
             <li>
-                <a href="#">
+                <a href="../../index.php">
                     <i class="fas fa-home"></i>
                     Home
                 </a>
@@ -81,6 +81,7 @@
 
         if (isset($_POST['logOut']) && $_POST['logOut'] === '') {
             $_SESSION["loggedin"] = false;
+            unset($_SESSION['user_email']);
             header('location: /RoutineNotes/public/auth/login.php');
             exit;
         }
@@ -122,7 +123,7 @@
                             </li>
                             <?php } ?>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">
+                                <a class="nav-link" href="app/views/profile.php">
                                     <i class="fas fa-user-alt"></i>
                                     Profile</a>
                             </li>
