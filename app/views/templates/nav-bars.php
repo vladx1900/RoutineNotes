@@ -52,14 +52,14 @@
                 </ul>
                 <a href="#workoutsSubmenu"  data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
                     <i class="fas fa-dumbbell"></i>
-                    Workouts
+                    Daily programs
                 </a>
                 <ul id="workoutsSubmenu" class="collapse list-unstyled">
                     <li>
-                        <a href="#">View Workouts</a>
+                        <a href="#">View Programs</a>
                     </li>
                     <li>
-                        <a href="#">Create Workout</a>
+                        <a href="#">Create Program</a>
                     </li>
                 </ul>
                 <a href="#">
@@ -75,6 +75,20 @@
 
     </nav>
 
+    <?php
+
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+        if (isset($_POST['logOut']) && $_POST['logOut'] === '') {
+            $_SESSION["loggedin"] = false;
+            header('location: /RoutineNotes/public/auth/login.php');
+            exit;
+        }
+    }
+
+
+    ?>
+
     <!-- Page Content  -->
     <div id="content">
 
@@ -88,28 +102,32 @@
                     <i class="fas fa-align-justify"></i>
                 </button>
 
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="nav navbar-nav ml-auto">
-                        <?php if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === false) { ?>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                <i class="fas fa-sign-in-alt"></i>
-                                Log In</a>
-                        </li>
-                        <?php } ?>
-                        <?php if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) { ?>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/RoutineNotes/public/auth/login.php">
-                                <i class="fas fa-sign-out-alt"></i>
-                                Log Out</a>
-                        </li>
-                        <?php } ?>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                <i class="fas fa-user-alt"></i>
-                                Profile</a>
-                        </li>
-                    </ul>
-                </div>
+                <form method="POST" autocomplete="off">
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+                        <ul class="nav navbar-nav ml-auto">
+
+                            <?php if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === false) { ?>
+                            <li class="nav-item">
+                                <button type="submit" class="nav-link invisibleButton" name="logIn">
+                                    <i class="fas fa-sign-in-alt"></i>
+                                    Log In</button>
+                            </li>
+                            <?php } ?>
+                            <?php if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) { ?>
+                            <li class="nav-item">
+                                <button type="submit" class="nav-link invisibleButton" name="logOut">
+                                    <i class="fas fa-sign-out-alt"></i>
+                                    Log Out</button>
+                            </li>
+                            <?php } ?>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">
+                                    <i class="fas fa-user-alt"></i>
+                                    Profile</a>
+                            </li>
+                        </ul>
+                    </div>
+                </form>
             </div>
         </nav>
