@@ -21,16 +21,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['password'], $_POST['repeatPassword']) && !empty($_POST['password']) && !empty($_POST['repeatPassword']) && trim($_POST['password']) === trim($_POST['repeatPassword'])) {
         $password = $_POST['password'];
     } else {
-        $error = 'Password and repeate password not match!';
+        $error = 'Password and repeat password not match!';
     }
 
     if (!empty($username) && !empty($password)) {
-        $result = $dbfunctions->insertNewUser($username, $password);
+        $searchForUserWithThisEmail = $dbfunctions->selectUserByEmail($username);
 
-        if ($result) {
+        if (empty($searchForUserWithThisEmail)) {
+            $result = $dbfunctions->insertNewUser($username, $password);
+        } else {
+            $error = 'This email is already used!';
+        }
+
+        if (empty($error) && $result) {
             $_SESSION["loggedin"] = true;
             header("location: ../../index.php");
-        } else {
+        } else if (empty($error))  {
             $error = 'Could not create the user';
         }
     }

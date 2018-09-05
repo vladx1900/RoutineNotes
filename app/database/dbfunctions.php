@@ -32,6 +32,21 @@ class dbfunctions {
     }
 
     /**
+     * @param $email
+     * @return array
+     */
+    public function selectUserByEmail($email)
+    {
+        $sql = $this->conn->prepare('SELECT * FROM `users` WHERE `email` = ?');
+        $sql->bind_param('s', $email);
+        $sql->execute();
+
+        $result = $sql->get_result();
+
+        return $result->fetch_assoc();
+    }
+
+    /**
      * @param $name
      * @param $password
      * @return array
@@ -39,7 +54,7 @@ class dbfunctions {
     public function selectUserByCredentials($name, $password)
     {
         $password = md5($password);
-        $sql = $this->conn->prepare('SELECT * FROM `users` WHERE name = ? AND password = ?');
+        $sql = $this->conn->prepare('SELECT * FROM `users` WHERE email = ? AND password = ?');
         $sql->bind_param('ss', $name, $password);
 
         $sql->execute();
@@ -57,8 +72,9 @@ class dbfunctions {
     public function insertNewUser($name, $password)
     {
         $password = md5($password);
-        $sql = $this->conn->prepare('INSERT INTO `users` (`name`, `password`, `role`) VALUES (?, ?, 1)');
+        $sql = $this->conn->prepare('INSERT INTO `users` (`email`, `password`, `role`) VALUES (?, ?, 1)');
         $sql->bind_param('ss', $name, $password);
+        var_dump($sql);
 
         return $sql->execute();
     }
