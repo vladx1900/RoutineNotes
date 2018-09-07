@@ -9,25 +9,19 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] === false){
     exit;
 }
 
-include_once 'app/database/dbfunctions.php';
-
+include_once '../../database/dbfunctions.php';
 $dbfunctions = new dbfunctions();
 
-require_once 'app/views/templates/head.php';
+require_once '../templates/head.php';
 ?>
     <!-- Our Custom CSS -->
-    <link rel="stylesheet" href="./public/css/templates/templateStyle.css">
+    <link rel="stylesheet" href="../../../public/css/templates/templateStyle.css">
 
 <?php
-require_once 'app/views/templates/nav-bars.php';
-require_once 'app/views/templates/body.php';
-require_once 'app/views/templates/loadJs.php';
+require_once '../templates/nav-bars.php';
+require_once '../body/exercisesDemoBody.php';
+require_once '../templates/loadJs.php';
 ?>
 
 <?php
-require_once 'app/views/templates/footer.php';
-
-
-
-
-
+require_once '../templates/footer.php';

@@ -25,30 +25,43 @@
                     All Exercises
                 </a>
                 <ul class="collapse list-unstyled" id="exercisesSubmenu">
-                    <li>
-                        <a href="#">Shoulders</a>
-                    </li>
-                    <li>
-                        <a href="#">Triceps</a>
-                    </li>
-                    <li>
-                        <a href="#">Biceps</a>
-                    </li>
-                    <li>
-                        <a href="#">Chest</a>
-                    </li>
-                    <li>
-                        <a href="#">Back</a>
-                    </li>
-                    <li>
-                        <a href="#">Legs</a>
-                    </li>
-                    <li>
-                        <a href="#">Abd</a>
-                    </li>
-                    <li>
-                        <a href="#">Cardio</a>
-                    </li>
+
+                    <a href="#exercisesUpperBody" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                        <i class="fas fa-bookmark"></i>
+                        Upper Body
+                    </a>
+                    <ul class="collapse list-unstyled" id="exercisesUpperBody">
+                        <?php
+                            /** @var  array $muscles */
+                            $muscles = $dbfunctions->getMusclesByCategory('upper-body');
+
+                            foreach ($muscles as $muscle) {
+
+                        ?>
+                        <li>
+                            <a href="#" style="padding-left: 30px !important;">* <?= $muscle['name'] ?></a>
+                        </li>
+                        <?php } ?>
+                    </ul>
+
+                    <a href="#exercisesLowerBody" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                        <i class="fas fa-bookmark"></i>
+                        Lower Body
+                    </a>
+                    <ul class="collapse list-unstyled" id="exercisesLowerBody">
+                        <?php
+                        /** @var  array $muscles */
+                        $muscles = $dbfunctions->getMusclesByCategory('lower-body');
+
+                        foreach ($muscles as $muscle) {
+
+                            ?>
+                            <li>
+                                <a href="#">* <?= $muscle['name'] ?></a>
+                            </li>
+                        <?php } ?>
+                    </ul>
+
                 </ul>
                 <a href="#workoutsSubmenu"  data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
                     <i class="fas fa-dumbbell"></i>
@@ -123,7 +136,8 @@
                             </li>
                             <?php } ?>
                             <li class="nav-item">
-                                <a class="nav-link" href="app/views/profile.php">
+                                <!-- todo: change this absolute path to work on production-->
+                                <a class="nav-link" href="http://localhost/RoutineNotes/app/views/profile.php">
                                     <i class="fas fa-user-alt"></i>
                                     Profile</a>
                             </li>

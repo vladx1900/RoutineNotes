@@ -1,7 +1,3 @@
 <?php
 
-$dbfunctions = new dbfunctions();
-
-
-
 ?>

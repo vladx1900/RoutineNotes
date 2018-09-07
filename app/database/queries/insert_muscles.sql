@@ -1,0 +1,18 @@
+INSERT INTO `muscles` (`name`, `category`) VALUES
+('Chest', 'upper-body'),
+('Forearms', 'upper-body'),
+('Lats', 'upper-body'),
+('Middle Back', 'upper-body'),
+('Lower Back', 'upper-body'),
+('Neck', 'upper-body'),
+('Quadriceps', 'lower-body'),
+('Hamstrings', 'lower-body'),
+('Calves', 'lower-body'),
+('Triceps', 'upper-body'),
+('Traps', 'upper-body'),
+('Shoulders', 'upper-body'),
+('Abdominals', 'upper-body'),
+('Glutes', 'lower-body'),
+('Biceps', 'upper-body'),
+('Adductors', 'lower-body'),
+('Abductors', 'lower-body');

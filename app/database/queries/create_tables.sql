@@ -5,3 +5,9 @@ CREATE TABLE `routinenotes`.`users`
  `role` INT NOT NULL ,
  PRIMARY KEY (`userId`)
  ) ENGINE = InnoDB;
+
+CREATE TABLE `routinenotes`.`muscles`
+( `muscleId` INT NOT NULL AUTO_INCREMENT ,
+ `name` VARCHAR(100) NOT NULL ,
+ PRIMARY KEY (`muscleId`)
+ ) ENGINE = InnoDB;

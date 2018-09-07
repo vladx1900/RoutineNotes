@@ -10,6 +10,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] === false){
 }
 
 include_once '../database/dbfunctions.php';
+$dbfunctions = new dbfunctions();
 
 require_once 'templates/head.php';
 ?>

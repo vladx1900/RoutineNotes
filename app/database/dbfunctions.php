@@ -74,8 +74,37 @@ class dbfunctions {
         $password = md5($password);
         $sql = $this->conn->prepare('INSERT INTO `users` (`email`, `password`, `role`) VALUES (?, ?, 1)');
         $sql->bind_param('ss', $name, $password);
-        var_dump($sql);
 
         return $sql->execute();
+    }
+
+    /**
+     * @param $category
+     * @return array
+     */
+    public function getMusclesByCategory($category)
+    {
+        $stmt = $this->conn->prepare('SELECT * FROM `muscles` WHERE `category` = ?');
+        $stmt->bind_param('s', $category);
+        $stmt->execute();
+
+        $meta = $stmt->result_metadata();
+
+        while ( $rows = $meta->fetch_field() ) {
+
+            $parameters[] = &$row[$rows->name];
+        }
+
+        call_user_func_array(array($stmt, 'bind_result'), $parameters);
+
+        while ( $stmt->fetch() ) {
+            $x = array();
+            foreach( $row as $key => $val ) {
+                $x[$key] = $val;
+            }
+            $arr_results[] = $x;
+        }
+
+        return $arr_results;
     }
 }
