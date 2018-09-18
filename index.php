@@ -1,6 +1,8 @@
 <?php
 
 // Initialize the session
+$lifetime=1800;
+session_set_cookie_params($lifetime);
 session_start();
 
 include_once 'public/auth/AuthService.php';
