@@ -1,16 +1,15 @@
 <?php
-include_once '../../app/database/dbfunctions.php';
-
-$dbfunctions = new dbfunctions();
 
 // Initialize the session
 session_start();
 
-// Check if the user is already logged in, if yes then redirect him to welcome page
-if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
-    header("location: ../../index.php");
-    exit;
-}
+include_once '../../app/database/dbfunctions.php';
+
+$dbfunctions = new dbfunctions();
+
+include_once 'AuthService.php';
+$authService = new AuthService();
+$authService->sessionStartAndLoginOrRegister();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 

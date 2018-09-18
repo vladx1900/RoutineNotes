@@ -3,11 +3,9 @@
 // Initialize the session
 session_start();
 
-//Check if the user is already logged in, if yes then redirect him to welcome page
-if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] === false){
-    header('location: /RoutineNotes/public/auth/login.php');
-    exit;
-}
+include_once '../../../public/auth/AuthService.php';
+$authService = new AuthService();
+$authService->auth('/RoutineNotes/public/auth/login.php');
 
 include_once '../../database/dbfunctions.php';
 $dbfunctions = new dbfunctions();
@@ -19,7 +17,7 @@ require_once '../templates/head.php';
 
 <?php
 require_once '../templates/nav-bars.php';
-require_once '../body/exercisesDemoBody.php';
+require_once '../body/exerciseTemplateBody.php';
 require_once '../templates/loadJs.php';
 ?>
 

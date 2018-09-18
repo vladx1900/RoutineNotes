@@ -2,6 +2,20 @@
 
 <body>
 
+<?php
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+    if (isset($_POST['logOut']) && $_POST['logOut'] === '') {
+        $_SESSION["loggedin"] = false;
+        unset($_SESSION['user_email']);
+        header('location: /RoutineNotes/public/auth/login.php');
+        exit;
+    }
+}
+
+?>
+
 <div class="wrapper">
     <!-- Sidebar  -->
     <nav id="sidebar">
@@ -12,7 +26,7 @@
 
         <ul class="list-unstyled components">
             <li>
-                <a href="../../index.php">
+                <a href="http://localhost/RoutineNotes/index.php">
                     <i class="fas fa-home"></i>
                     Home
                 </a>
@@ -87,21 +101,6 @@
         </ul>
 
     </nav>
-
-    <?php
-
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-
-        if (isset($_POST['logOut']) && $_POST['logOut'] === '') {
-            $_SESSION["loggedin"] = false;
-            unset($_SESSION['user_email']);
-            header('location: /RoutineNotes/public/auth/login.php');
-            exit;
-        }
-    }
-
-
-    ?>
 
     <!-- Page Content  -->
     <div id="content">
