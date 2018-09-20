@@ -9,6 +9,11 @@ include_once '../../../public/auth/AuthService.php';
 $authService = new AuthService();
 $authService->auth('/RoutineNotes/public/auth/login.php');
 
+if (empty($_GET['id'])) {
+    header('location: ../../../index.php');
+    exit;
+}
+
 include_once '../../database/dbfunctions.php';
 $dbfunctions = new dbfunctions();
 

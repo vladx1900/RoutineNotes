@@ -107,4 +107,50 @@ class dbfunctions {
 
         return $arr_results;
     }
+
+    public function getMuscleByMuscleId($muscleId)
+    {
+        $sql = $this->conn->prepare('SELECT * FROM `muscles` WHERE muscleId = ?');
+        $sql->bind_param('i', $muscleId);
+
+        $sql->execute();
+
+        $result = $sql->get_result();
+
+        return $result->fetch_assoc();
+    }
+
+    /**
+     * @param $muscleId
+     * @return array|null
+     */
+    public function getExercisesByMuscleId($muscleId)
+    {
+        $stmt = $this->conn->prepare('SELECT `exercises`.*, `muscles`.name AS muscleName FROM `exercises` 
+                                            INNER JOIN `muscles` ON `muscles`.muscleId = `exercises`.`muscleId` WHERE `exercises`.muscleId = ?');
+        $stmt->bind_param('i', $muscleId);
+        $stmt->execute();
+
+        $meta = $stmt->result_metadata();
+
+        while ( $rows = $meta->fetch_field() ) {
+
+            $parameters[] = &$row[$rows->name];
+        }
+
+        call_user_func_array(array($stmt, 'bind_result'), $parameters);
+
+        while ( $stmt->fetch() ) {
+            $x = array();
+            foreach( $row as $key => $val ) {
+                $x[$key] = $val;
+            }
+            $arr_results[] = $x;
+        }
+        if (isset($arr_results) && !empty($arr_results)) {
+            return $arr_results;
+        }
+
+        return null;
+    }
 }

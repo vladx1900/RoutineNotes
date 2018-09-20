@@ -53,7 +53,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                         ?>
                         <li>
-                            <a href="#" style="padding-left: 30px !important;">* <?= $muscle['name'] ?></a>
+                            <a href="http://localhost/RoutineNotes/app/views/exercises/exerciseTemplate.php?id=<?= $muscle['muscleId'] ?>" style="padding-left: 30px !important;">* <?= $muscle['name'] ?></a>
                         </li>
                         <?php } ?>
                     </ul>
